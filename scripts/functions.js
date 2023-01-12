@@ -85,7 +85,7 @@ async function getInputValue(history, cmd=undefined) {
             createCode("download", "to download my pdf resume");
             createCode("calc", "to evaluate an expression, for eg: (2 + 3)");
             createCode("experience", "to see my work experience");
-            createCode("history","shows the last 10 valid commands performed, use --clear flag to clear the history");
+            createCode("history","shows the last 10 valid commands performed, use --clear flag to clear the history or write an id to run command of that specific id in history");
             break;
         case "neofetch":
             neofetch();
