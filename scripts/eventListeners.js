@@ -85,3 +85,13 @@ app.addEventListener("click", function () {
     const input = document.querySelector("input");
     input.focus();
 });
+
+window.addEventListener("keydown", async function (event) {
+    if (event.key === "Tab") {
+        if (localStorage.getItem("typingCurrently") == "1" && localStorage.getItem("typing") == "on") {
+            localStorage.setItem("typing", "off");
+            await delay(2000)
+            localStorage.setItem("typing", "on");
+        }
+    }
+})

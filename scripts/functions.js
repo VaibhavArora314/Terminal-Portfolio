@@ -92,6 +92,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
     history.push(cmd || document.querySelector("input").value);
 
     if (remove) removeInput();
+    localStorage.setItem("typingCurrently", "1");
 
     switch (value) {
         case "help":
@@ -342,6 +343,7 @@ async function getInputValue(history, remove = false, cmd = undefined) {
                 await createText("Are you looking for this: " + commands);
             }
     }
+    localStorage.setItem("typingCurrently", "0");
 }
 
 function new_line() {
@@ -413,6 +415,10 @@ async function createText(text, typingOn = true) {
     let index = 0;
     async function writeText() {
         while (index < text.length) {
+            if (localStorage.getItem("typing") == "off") {
+                p.innerHTML = text;
+                break;
+            }
             p.innerHTML += text[index++];
             await new Promise((writeText) => setTimeout(writeText, typingSpeed));
         }
@@ -435,7 +441,6 @@ async function createCode(code, text, typingOn = true) {
     }
 
     const typingSpeed = localStorage.getItem("typingSpeed") || 20;
-
     const span = document.createElement("span");
     span.className = "code"
     p.appendChild(span);
@@ -443,6 +448,10 @@ async function createCode(code, text, typingOn = true) {
     let index = 0;
     async function writeCode() {
         while (index < code.length) {
+            if (localStorage.getItem("typing") == "off") {
+                span.innerHTML = code;
+                break;
+            }
             span.innerHTML += code[index++];
             await new Promise((writeCode) => setTimeout(writeCode, typingSpeed));
         }
@@ -455,6 +464,10 @@ async function createCode(code, text, typingOn = true) {
     index = 0;
     async function writeText() {
         while (index < text.length) {
+            if (localStorage.getItem("typing") == "off") {
+                p.innerHTML += text.slice(index);
+                break;
+            }
             p.innerHTML += text[index++];
             await new Promise((writeText) => setTimeout(writeText, typingSpeed));
         }

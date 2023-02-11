@@ -70,6 +70,7 @@ themeButton.addEventListener("click", themeBtn);
 
 //function to set up and start the terminal
 async function openTerminal() {
+    localStorage.setItem("typingCurrently", "1");
     await createText("Welcome to the Terminal");
     await delay(500);
     await createText("Starting up...");
@@ -78,6 +79,7 @@ async function openTerminal() {
     await createCode("Type help", "for a list of commands");
     await delay(500);
     new_line();
+    localStorage.setItem("typingCurrently", "0");
 }
 
 //fetch statisticss from ./scripts/fetchStats.js
