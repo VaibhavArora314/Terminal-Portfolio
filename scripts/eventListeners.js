@@ -88,7 +88,7 @@ app.addEventListener("click", function () {
 
 window.addEventListener("keydown", async function (event) {
     if (event.key === "Tab") {
-        if (localStorage.getItem("typingCurrently") == "1" && localStorage.getItem("typing") == "on") {
+        if (localStorage.getItem("typingCurrently") == "1" && (localStorage.getItem("typing") == "on" || localStorage.getItem("typing") == undefined)) {
             localStorage.setItem("typing", "off");
             await delay(2000)
             localStorage.setItem("typing", "on");
